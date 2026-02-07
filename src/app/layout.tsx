@@ -4,6 +4,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Laiqa Islam | Software Engineer",
   description: "Full-stack developer building scalable web applications with MERN & Laravel. Problem solver with a growth mindset.",
+    icons: {
+    icon: "/favicon.png", 
+  },
 };
 
 
