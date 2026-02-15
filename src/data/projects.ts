@@ -23,200 +23,168 @@ export type Project = {
 };
 
 export const projects: Project[] = [
-  {
-    slug: "rental-property-management",
-    title: "Rental Property Management System",
-    description:
-      "Full-stack rental platform enabling tenants to discover properties, contact agents, and request meetings, while agents manage listings, availability slots, and client interactions through a dedicated dashboard.",
+  // {
+  //   slug: "rental-property-management",
+  //   title: "Rental Property Management System",
+  //   description:
+  //     "Full-stack rental platform enabling tenants to discover properties, contact agents, and request meetings, while agents manage listings, availability slots, and client interactions through a dedicated dashboard.",
 
-    imageSrc: "/images/RentCanberra1.png",
-    hoverTint: "from-blue-900/55 via-transparent to-transparent",
-    Tint: "from-blue-900/25 via-transparent to-transparent",
+  //   imageSrc: "/images/RentCanberra1.png",
+  //   hoverTint: "from-blue-900/55 via-transparent to-transparent",
+  //   Tint: "from-blue-900/25 via-transparent to-transparent",
 
-    role: "Full-Stack Developer",
-    tech: ["Next.js", "React", "PostgreSQL", "Tailwind CSS"],
+  //   role: "Full-Stack Developer",
+  //   tech: ["Next.js", "React", "PostgreSQL", "Tailwind CSS"],
 
-    heroImage: "/images/RentCanberra1.png",
+  //   heroImage: "/images/RentCanberra1.png",
 
-    overview:
-      "A complete rental property ecosystem built around two primary roles — Tenant and Agent. Tenants can browse available rental properties, search by location, contact agents, and request property viewings. Agents manage property listings, define available meeting slots, receive inquiries, and respond to tenant requests. The platform integrates real-time location mapping, email notifications, and role-based dashboards to support smooth end-to-end rental workflows.",
+  //   overview:
+  //     "A complete rental property ecosystem built around two primary roles — Tenant and Agent. Tenants can browse available rental properties, search by location, contact agents, and request property viewings. Agents manage property listings, define available meeting slots, receive inquiries, and respond to tenant requests. The platform integrates real-time location mapping, email notifications, and role-based dashboards to support smooth end-to-end rental workflows.",
 
-    goals: [
-      "Design a clear separation of Tenant and Agent workflows",
-      "Allow tenants to contact agents and request meetings seamlessly",
-      "Provide agents with full control over listings and availability",
-      "Implement email-based notifications for all major interactions",
-      "Enable location-based property discovery using map integration",
-    ],
+  //   goals: [
+  //     "Design a clear separation of Tenant and Agent workflows",
+  //     "Allow tenants to contact agents and request meetings seamlessly",
+  //     "Provide agents with full control over listings and availability",
+  //     "Implement email-based notifications for all major interactions",
+  //     "Enable location-based property discovery using map integration",
+  //   ],
 
-    keyFeatures: [
-      {
-        title: "Tenant Property Discovery",
-        description:
-          "Tenants can browse available rental listings, view detailed property pages, and search properties based on location and proximity to amenities.",
-      },
-      {
-        title: "Contact Agent Flow",
-        description:
-          "From any property detail page, tenants can click a Contact Agent button which sends an email notification to the listing agent containing tenant details and inquiry message.",
-      },
-      {
-        title: "Meeting Slot Requests",
-        description:
-          "Agents define available viewing time slots. Tenants can request a slot if it is not already booked. Agents receive email notifications and can accept or reject requests.",
-      },
-      {
-        title: "Email-Based Status Updates",
-        description:
-          "When an agent accepts or rejects a meeting request, the system automatically emails the tenant with the decision.",
-      },
-      {
-        title: "Mail Me (Broadcast Request)",
-        description:
-          "Tenants can submit a requirement form describing budget, location, and preferences. All agents can view these requests and respond with matching property listings.",
-      },
-      {
-        title: "Agent Dashboard",
-        description:
-          "Agents can create, edit, and delete property listings, upload multiple images, manage meeting slots, and review incoming tenant inquiries.",
-      },
-      {
-        title: "Live Location & Map Integration",
-        description:
-          "OpenStreetMap integration allows agents to pin property locations and nearby amenities. Tenants can discover properties by searching specific areas.",
-      },
-      {
-        title: "Role-Based Access Control",
-        description:
-          "Separate authentication and protected routes for Tenant and Agent roles, ensuring users only access relevant features.",
-      },
-    ],
+  //   keyFeatures: [
+  //     {
+  //       title: "Tenant Property Discovery",
+  //       description:
+  //         "Tenants can browse available rental listings, view detailed property pages, and search properties based on location and proximity to amenities.",
+  //     },
+  //     {
+  //       title: "Contact Agent Flow",
+  //       description:
+  //         "From any property detail page, tenants can click a Contact Agent button which sends an email notification to the listing agent containing tenant details and inquiry message.",
+  //     },
+  //     {
+  //       title: "Meeting Slot Requests",
+  //       description:
+  //         "Agents define available viewing time slots. Tenants can request a slot if it is not already booked. Agents receive email notifications and can accept or reject requests.",
+  //     },
+  //     {
+  //       title: "Email-Based Status Updates",
+  //       description:
+  //         "When an agent accepts or rejects a meeting request, the system automatically emails the tenant with the decision.",
+  //     },
+  //     {
+  //       title: "Mail Me (Broadcast Request)",
+  //       description:
+  //         "Tenants can submit a requirement form describing budget, location, and preferences. All agents can view these requests and respond with matching property listings.",
+  //     },
+  //     {
+  //       title: "Agent Dashboard",
+  //       description:
+  //         "Agents can create, edit, and delete property listings, upload multiple images, manage meeting slots, and review incoming tenant inquiries.",
+  //     },
+  //     {
+  //       title: "Live Location & Map Integration",
+  //       description:
+  //         "OpenStreetMap integration allows agents to pin property locations and nearby amenities. Tenants can discover properties by searching specific areas.",
+  //     },
+  //     {
+  //       title: "Role-Based Access Control",
+  //       description:
+  //         "Separate authentication and protected routes for Tenant and Agent roles, ensuring users only access relevant features.",
+  //     },
+  //   ],
 
-    outcome:
-      "Delivered a production-ready rental platform that supports real-world agent–tenant workflows, improves response times through automation, and provides location-aware property discovery. The system demonstrates full-stack proficiency across frontend UI, backend logic, database modeling, and third-party API integration.",
+  //   outcome:
+  //     "Delivered a production-ready rental platform that supports real-world agent–tenant workflows, improves response times through automation, and provides location-aware property discovery. The system demonstrates full-stack proficiency across frontend UI, backend logic, database modeling, and third-party API integration.",
 
-    toolsUsed: [
-      "Next.js 14",
-      "PostgreSQL",
-      "Prisma",
-      "Tailwind CSS",
-      "NextAuth.js",
-      "OpenStreetMap API",
-      "Nodemailer",
-    ],
+  //   toolsUsed: [
+  //     "Next.js 14",
+  //     "PostgreSQL",
+  //     "Prisma",
+  //     "Tailwind CSS",
+  //     "NextAuth.js",
+  //     "OpenStreetMap API",
+  //     "Nodemailer",
+  //   ],
 
-    screenshots: [
-      "/images/RentCanberra2.png",
-      "/images/RentCanberra3.png",
-      "/images/RentCanberra4.png",
-      "/images/RentCanberra5.png",
-      "/images/RentCanberra6.png",
-      "/images/RentCanberra7.png",
-      "/images/RentCanberra8.png",
-      "/images/RentCanberra9.png",
-    ],
-  },
+  //   screenshots: [
+  //     "/images/RentCanberra2.png",
+  //     "/images/RentCanberra3.png",
+  //     "/images/RentCanberra4.png",
+  //     "/images/RentCanberra5.png",
+  //     "/images/RentCanberra6.png",
+  //     "/images/RentCanberra7.png",
+  //     "/images/RentCanberra8.png",
+  //     "/images/RentCanberra9.png",
+  //   ],
+  // },
 
-  {
-    slug: "ifeelshy-pharmacy",
-    title: "iFeelShy – Pharmacy & Online Consultation Platform",
-    description:
-      "A hybrid healthcare platform combining ecommerce and guided medical consultation. Enables direct purchase of OTC medicines while enforcing symptom-based validation for sensitive treatments before checkout.",
+  // {
+  //   slug: "ifeelshy-pharmacy",
+  //   title: "iFeelShy – Pharmacy & Online Consultation Platform",
+  //   description:
+  //     "A hybrid healthcare platform combining ecommerce and guided medical consultation. Enables direct purchase of OTC medicines while enforcing symptom-based validation for sensitive treatments before checkout.",
 
-    imageSrc: "/images/iFeelShy1.png",
-    hoverTint: "from-emerald-900/50 via-transparent to-transparent",
-    Tint: "from-emerald-900/50 via-transparent to-transparent",
+  //   imageSrc: "/images/iFeelShy1.png",
+  //   hoverTint: "from-emerald-900/50 via-transparent to-transparent",
+  //   Tint: "from-emerald-900/50 via-transparent to-transparent",
 
-    tech: ["Laravel", "MySQL", "Livewire", "Tailwind CSS"],
+  //   tech: ["Laravel", "MySQL", "Livewire", "Tailwind CSS"],
 
-    heroImage: "/images/iFeelShy1.png",
+  //   heroImage: "/images/iFeelShy1.png",
 
-    overview:
-      "iFeelShy is a full-featured online pharmacy designed to responsibly sell both over-the-counter and sensitive medicines. The platform blends a traditional ecommerce flow with a medical consultation experience. Depending on the treatment category, users can either purchase medicines directly or must complete a detailed consultation form to validate eligibility before checkout. The system ensures safer medicine distribution while maintaining a smooth and approachable user experience.",
+  //   overview:
+  //     "iFeelShy is a full-featured online pharmacy designed to responsibly sell both over-the-counter and sensitive medicines. The platform blends a traditional ecommerce flow with a medical consultation experience. Depending on the treatment category, users can either purchase medicines directly or must complete a detailed consultation form to validate eligibility before checkout. The system ensures safer medicine distribution while maintaining a smooth and approachable user experience.",
 
-    goals: [
-      "Enable safe and compliant online medicine purchasing",
-      "Prevent misuse of prescription or sensitive treatments",
-      "Provide a guided consultation experience without overwhelming users",
-      "Allow administrators full control over orders, content, and treatments",
-      "Educate users through medical articles and treatment-focused blogs",
-    ],
+  //   goals: [
+  //     "Enable safe and compliant online medicine purchasing",
+  //     "Prevent misuse of prescription or sensitive treatments",
+  //     "Provide a guided consultation experience without overwhelming users",
+  //     "Allow administrators full control over orders, content, and treatments",
+  //     "Educate users through medical articles and treatment-focused blogs",
+  //   ],
 
-    keyFeatures: [
-      {
-        title: "Dual Purchase Flow (OTC + Consultation)",
-        description:
-          "Over-the-counter categories such as pain relief allow instant add-to-cart and checkout, while sensitive treatments require a mandatory consultation before purchase.",
-      },
-      {
-        title: "Symptom-Based Consultation Forms",
-        description:
-          "Dynamic questionnaires adapt to the selected treatment. Users must confirm relevant symptoms (e.g. erectile dysfunction for finasteride) before the system allows checkout.",
-      },
-      {
-        title: "Conditional Checkout Validation",
-        description:
-          "Medicine availability is programmatically restricted based on consultation answers, ensuring only eligible users can proceed with sensitive purchases.",
-      },
-      {
-        title: "Admin Dashboard & Order Management",
-        description:
-          "Admins can view and manage all orders, track payment status, update delivery progress, and monitor consultation-based approvals from a centralized panel.",
-      },
-      {
-        title: "Treatment & Blog Management System",
-        description:
-          "Integrated blogging system allows admins to create treatment categories and publish educational articles (e.g. sleep disorders, hair loss, pain management) linked directly to products.",
-      },
-      {
-        title: "End-to-End Ecommerce Experience",
-        description:
-          "Includes cart, secure checkout, address management, payment tracking, and order history for users.",
-      },
-    ],
+  //   keyFeatures: [
+  //     {
+  //       title: "Dual Purchase Flow (OTC + Consultation)",
+  //       description:
+  //         "Over-the-counter categories such as pain relief allow instant add-to-cart and checkout, while sensitive treatments require a mandatory consultation before purchase.",
+  //     },
+  //     {
+  //       title: "Symptom-Based Consultation Forms",
+  //       description:
+  //         "Dynamic questionnaires adapt to the selected treatment. Users must confirm relevant symptoms (e.g. erectile dysfunction for finasteride) before the system allows checkout.",
+  //     },
+  //     {
+  //       title: "Conditional Checkout Validation",
+  //       description:
+  //         "Medicine availability is programmatically restricted based on consultation answers, ensuring only eligible users can proceed with sensitive purchases.",
+  //     },
+  //     {
+  //       title: "Admin Dashboard & Order Management",
+  //       description:
+  //         "Admins can view and manage all orders, track payment status, update delivery progress, and monitor consultation-based approvals from a centralized panel.",
+  //     },
+  //     {
+  //       title: "Treatment & Blog Management System",
+  //       description:
+  //         "Integrated blogging system allows admins to create treatment categories and publish educational articles (e.g. sleep disorders, hair loss, pain management) linked directly to products.",
+  //     },
+  //     {
+  //       title: "End-to-End Ecommerce Experience",
+  //       description:
+  //         "Includes cart, secure checkout, address management, payment tracking, and order history for users.",
+  //     },
+  //   ],
 
-    outcome:
-      "Successfully delivered a scalable and responsible online pharmacy platform that balances user convenience with medical safety. The system reduced improper medicine purchases while improving user trust through guided consultations and educational content.",
+  //   outcome:
+  //     "Successfully delivered a scalable and responsible online pharmacy platform that balances user convenience with medical safety. The system reduced improper medicine purchases while improving user trust through guided consultations and educational content.",
 
-    toolsUsed: ["Laravel 10", "MySQL", "Livewire", "Tailwind CSS"],
-    screenshots: [
-      "/images/iFeelShy2.png",
-      "/images/iFeelShy5.png",
-      "/images/iFeelShy6.png",
-    ],
-  },
-
-
-  {
-    slug: "york-publishers-dashboard",
-    title: "York Publishers Dashboard",
-    description:
-      "Internal communication platform with full chat (send/edit/delete with time limits), media sharing, and admin-only messaging — no user-to-user private chat.",
-    imageSrc: "/images/YorkPublishers5.png",
-    hoverTint: "from-amber-900/50 via-transparent to-transparent",
-    Tint: "from-amber-900/50 via-transparent to-transparent",
-    tech: ["Laravel", "JavaScript", "SQL"],
-
-    overview:
-      "Custom internal messaging dashboard for a publishing company. Focused on admin-to-team communication with rich media support and message lifecycle controls.",
-    keyFeatures: [
-      {
-        title: "Admin-Controlled Messaging",
-        description: "Only admins can initiate and manage conversations",
-      },
-      {
-        title: "Rich Media Support",
-        description:
-          "Upload and preview documents, images, videos within messages",
-      },
-      {
-        title: "Message Editing & Time-limited Deletion",
-        description:
-          "Users can edit messages; admins can set auto-delete rules",
-      },
-    ],
-    toolsUsed: ["Laravel", "Alpine.js", "MySQL"],
-  },
+  //   toolsUsed: ["Laravel 10", "MySQL", "Livewire", "Tailwind CSS"],
+  //   screenshots: [
+  //     "/images/iFeelShy2.png",
+  //     "/images/iFeelShy5.png",
+  //     "/images/iFeelShy6.png",
+  //   ],
+  // },
 
    {
   slug: "mood-based-music-generator",
@@ -319,6 +287,38 @@ export const projects: Project[] = [
     "/images/Moodbeat9.png",
   ],
 },
+
+  {
+    slug: "york-publishers-dashboard",
+    title: "York Publishers Dashboard",
+    description:
+      "Internal communication platform with full chat (send/edit/delete with time limits), media sharing, and admin-only messaging — no user-to-user private chat.",
+    imageSrc: "/images/YorkPublishers5.png",
+    hoverTint: "from-amber-900/50 via-transparent to-transparent",
+    Tint: "from-amber-900/50 via-transparent to-transparent",
+    tech: ["Laravel", "JavaScript", "SQL"],
+
+    overview:
+      "Custom internal messaging dashboard for a publishing company. Focused on admin-to-team communication with rich media support and message lifecycle controls.",
+    keyFeatures: [
+      {
+        title: "Admin-Controlled Messaging",
+        description: "Only admins can initiate and manage conversations",
+      },
+      {
+        title: "Rich Media Support",
+        description:
+          "Upload and preview documents, images, videos within messages",
+      },
+      {
+        title: "Message Editing & Time-limited Deletion",
+        description:
+          "Users can edit messages; admins can set auto-delete rules",
+      },
+    ],
+    toolsUsed: ["Laravel", "Alpine.js", "MySQL"],
+  },
+
 
   {
     slug: "business-websites",
