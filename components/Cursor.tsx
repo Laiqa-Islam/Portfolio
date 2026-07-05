@@ -79,13 +79,13 @@ export default function Cursor() {
     <>
       <div
         ref={dotRef}
-        className="pointer-events-none fixed left-0 top-0 z-[110] h-1.5 w-1.5 rounded-full bg-gold"
+        className="pointer-events-none fixed left-0 top-0 z-[200] h-1.5 w-1.5 rounded-full bg-gold"
         style={{ transform: "translate(-100px, -100px)" }}
         aria-hidden="true"
       />
       <div
         ref={ringRef}
-        className="pointer-events-none fixed left-0 top-0 z-[110] flex items-center justify-center rounded-full border transition-[width,height,border-color] duration-300"
+        className="pointer-events-none fixed left-0 top-0 z-[200] flex items-center justify-center rounded-full border transition-[width,height,border-color] duration-300"
         style={{
           width: 28,
           height: 28,

@@ -9,6 +9,7 @@ import Reveal from "./Reveal";
 import Scramble from "./Scramble";
 import Magnetic from "./Magnetic";
 import Nav from "./Nav";
+import Screenshots from "./Screenshots";
 
 export default function ProjectDetail({
   project,
@@ -187,36 +188,7 @@ export default function ProjectDetail({
 
         {/* screenshots */}
         {project.screenshots && project.screenshots.length > 0 && (
-          <div className="border-b border-line px-6 py-16 md:px-12 xl:px-20 md:py-24">
-            <Reveal>
-              <p className="mb-10 font-mono text-xs tracking-[0.3em] text-gold">
-                // VISUAL LOG
-              </p>
-            </Reveal>
-            <div className="grid gap-6 sm:grid-cols-2">
-              {project.screenshots.map((shot, i) => (
-                <Reveal
-                  key={shot}
-                  delay={(i % 2) * 0.1}
-                  y={40}
-                  className={i % 3 === 0 ? "sm:col-span-2" : ""}
-                >
-                  <div className="img-frame corner-ticks relative aspect-[16/9] border border-line">
-                    <Image
-                      src={shot}
-                      alt={`${project.title} — screenshot ${i + 1}`}
-                      fill
-                      sizes="(max-width: 640px) 100vw, 50vw"
-                      className="object-cover"
-                    />
-                    <span className="absolute bottom-2 left-3 z-10 bg-ink/80 px-2 py-0.5 font-mono text-[10px] tracking-widest text-gold">
-                      IMG_{String(i + 1).padStart(3, "0")}
-                    </span>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
+          <Screenshots title={project.title} shots={project.screenshots} />
         )}
 
         {/* outcome + tools */}
