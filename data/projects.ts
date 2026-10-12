@@ -1,37 +1,55 @@
 // data/projects.ts
+
+/** Background treatment of a project's poster panel. */
+export type Panel = "accent" | "ink" | "paper" | "stone" | "graphite";
+
+/** Drawn UI sketch used when a project has no screenshots. */
+export type Sketch = "events" | "pets";
+
 export type Project = {
   slug: string;
+  /** Short display name — set huge on cards and the case-study title. */
+  name: string;
   title: string;
+  /** What kind of thing it is, e.g. "Interactive map". */
+  kind: string;
+  /** One line for cards and the index. */
+  summary: string;
   description: string;
   imageSrc?: string;
-  hoverTint?: string;
-  Tint?: string;
   role?: string;
   year?: string;
   tech: string[];
 
+  /** Shown in the horizontal "Selected work" reel on the home page. */
+  featured?: boolean;
+  panel?: Panel;
+  sketch?: Sketch;
+  liveUrl?: string;
+  repoUrl?: string;
+
   heroImage?: string;
   overview?: string;
   goals?: string[];
-  process?: string;
+  /** How data or requests move through the system, drawn as a diagram. */
+  pipeline?: { label: string; text: string }[];
   keyFeatures?: { title: string; description: string }[];
   outcome?: string;
   toolsUsed?: string[];
   screenshots?: string[];
-  externalLink?: string;
-  comingSoon?: boolean;
 };
 
 export const projects: Project[] = [
   // {
   //   slug: "rental-property-management",
+  //   name: "RentCanberra",
+  //   kind: "Property platform",
+  //   summary: "Tenants find homes and book viewings; agents run listings and slots.",
   //   title: "Rental Property Management System",
   //   description:
   //     "Full-stack rental platform enabling tenants to discover properties, contact agents, and request meetings, while agents manage listings, availability slots, and client interactions through a dedicated dashboard.",
 
   //   imageSrc: "/images/RentCanberra1.png",
-  //   hoverTint: "from-blue-900/55 via-transparent to-transparent",
-  //   Tint: "from-blue-900/25 via-transparent to-transparent",
 
   //   role: "Full-Stack Developer",
   //   tech: ["Next.js", "React", "PostgreSQL", "Tailwind CSS"],
@@ -117,17 +135,24 @@ export const projects: Project[] = [
   //   ],
   // },
 
+
+  // Kept out of the portfolio (it's on the résumé only). Uncomment to show it again.
   // {
   //   slug: "ifeelshy-pharmacy",
+  //   name: "iFeelShy",
+  //   kind: "Healthcare platform",
+  //   summary: "A live UK online pharmacy — consultations, prescribing, dispensing and shipping.",
+  //   year: "2026",
+  //   role: "Full-stack developer, team of five",
+  //   featured: true,
+  //   panel: "ink",
   //   title: "iFeelShy – Pharmacy & Online Consultation Platform",
   //   description:
   //     "A hybrid healthcare platform combining ecommerce and guided medical consultation. Enables direct purchase of OTC medicines while enforcing symptom-based validation for sensitive treatments before checkout.",
 
   //   imageSrc: "/images/iFeelShy1.png",
-  //   hoverTint: "from-emerald-900/50 via-transparent to-transparent",
-  //   Tint: "from-emerald-900/50 via-transparent to-transparent",
 
-  //   tech: ["Laravel", "MySQL", "Livewire", "Tailwind CSS"],
+  //   tech: ["Laravel", "MySQL", "Stripe", "LiveKit", "JavaScript"],
 
   //   heroImage: "/images/iFeelShy1.png",
 
@@ -143,6 +168,31 @@ export const projects: Project[] = [
   //   ],
 
   //   keyFeatures: [
+  //     {
+  //       title: "Prescription & dispensing flow",
+  //       description:
+  //         "I built the clinical pipeline from the awaiting-review and dispensing queues through to ready-to-dispatch, including a flag that informs the patient's GP.",
+  //     },
+  //     {
+  //       title: "Royal Mail shipping",
+  //       description:
+  //         "Integrated Royal Mail so orders ship from the admin panel, with validated label generation built in.",
+  //     },
+  //     {
+  //       title: "Video consultations",
+  //       description:
+  //         "Live video consultations between patients and clinicians, built on LiveKit.",
+  //     },
+  //     {
+  //       title: "Security for health data",
+  //       description:
+  //         "Multi-factor authentication, data encryption at rest, and a complete audit trail of who changed what.",
+  //     },
+  //     {
+  //       title: "Subscriptions & inventory",
+  //       description:
+  //         "Recurring subscription orders and an inventory system that keeps stock correct through checkout.",
+  //     },
   //     {
   //       title: "Dual Purchase Flow (OTC + Consultation)",
   //       description:
@@ -178,9 +228,10 @@ export const projects: Project[] = [
   //   outcome:
   //     "Successfully delivered a scalable and responsible online pharmacy platform that balances user convenience with medical safety. The system reduced improper medicine purchases while improving user trust through guided consultations and educational content.",
 
-  //   toolsUsed: ["Laravel 10", "MySQL", "Livewire", "Tailwind CSS"],
+  //   toolsUsed: ["Laravel 8", "MySQL", "Stripe", "LiveKit", "Google2FA", "Spatie Permission", "DomPDF", "Royal Mail API"],
   //   screenshots: [
   //     "/images/iFeelShy2.png",
+  //     "/images/iFeelShy4.png",
   //     "/images/iFeelShy5.png",
   //     "/images/iFeelShy6.png",
   //   ],
@@ -188,13 +239,24 @@ export const projects: Project[] = [
 
   {
     slug: "imperium-romanum",
+    name: "Imperium",
+    kind: "Interactive map",
+    summary: "Two thousand years of Roman borders you can scrub through on a timeline.",
+    year: "2026",
+    featured: true,
+    panel: "accent",
+    repoUrl: "https://github.com/Laiqa-Islam/Roman-Empire",
+    pipeline: [
+      { label: "Source", text: "Century-by-century world borders from historical-basemaps" },
+      { label: "Clip", text: "mapshaper trims every polygon to Natural Earth coastlines" },
+      { label: "Measure", text: "Geodesic area per snapshot feeds the timeline sparkline" },
+      { label: "Render", text: "MapLibre GL draws ~750 KB of local GeoJSON, no tiles" },
+    ],
     title: "Imperium Romanum — Rome Mapped Through Time",
     description:
       "An interactive historical map that redraws the borders of Rome year by year, from the founding of the Republic in 509 BC to the fall of Constantinople in 1453. Drag a timeline, watch two thousand years of territory rise and fall, then dive into full manuscript-style stories and a mind-map of the emperors, generals, and rivals who made it happen.",
 
     imageSrc: "/images/RomanEmpire1.png",
-    hoverTint: "from-amber-900/50 via-transparent to-transparent",
-    Tint: "from-amber-900/50 via-transparent to-transparent",
 
     tech: [
       "Next.js",
@@ -282,14 +344,218 @@ export const projects: Project[] = [
 
 
   {
+    slug: "fanhub-plus",
+    name: "FanHub+",
+    title: "FanHub+ — A Fandom Universe Portal",
+    kind: "Community platform",
+    summary: "Eight fandom channels, accounts, a content explorer and a merch store.",
+    description:
+      "A fandom portal covering eight communities — anime, gaming, movies, TV, K-Pop, comics, manga and cosplay. Verified accounts, a content explorer that filters on everything at once, character files, events, and a merch store with a full checkout flow.",
+    year: "2026",
+    featured: true,
+    panel: "ink",
+    imageSrc: "/images/FanHub1.png",
+    liveUrl: "https://fanhub-plus.vercel.app",
+    repoUrl: "https://github.com/Laiqa-Islam/FanHub-Plus",
+    tech: ["Next.js 16", "TypeScript", "MongoDB", "Tailwind CSS", "GSAP"],
+
+    overview:
+      "FanHub+ started from a formal spec and grew into a full portal: eight channels with their own neon colour, a content explorer that filters by channel, format, genre and year at the same time, character files, events, and a merch store with a persistent cart and a complete checkout interface. Under the hood it's Next.js 16 with Server Actions, MongoDB through Mongoose, Cloudinary for uploads and Mailtrap for verification and reset email. Afterwards I ported the whole thing to a classic React + Express split without changing a single page.",
+
+    goals: [
+      "Give eight very different communities one home without them blurring together",
+      "Make authentication genuinely safe, not just present",
+      "Let heavy motion run without ever hiding content",
+      "Let visitors browse freely and keep personal features behind an account",
+    ],
+
+    pipeline: [
+      { label: "Gate", text: "proxy.ts reads the signed session cookie — no database call" },
+      { label: "Authorise", text: "A data access layer runs the real checks next to the data" },
+      { label: "Store", text: "MongoDB Atlas through Mongoose, media on Cloudinary" },
+      { label: "Render", text: "Server Components stream each per-user page" },
+    ],
+
+    keyFeatures: [
+      {
+        title: "Sessions done properly",
+        description:
+          "Signed JWTs in httpOnly cookies, bcrypt at cost 12, and verification and reset tokens stored only as SHA-256 hashes so a leaked dump can't be replayed.",
+      },
+      {
+        title: "No account enumeration",
+        description:
+          "Login, forgot-password and resend-verification all answer the same way whether or not the email exists.",
+      },
+      {
+        title: "Next 16's proxy, used the right way",
+        description:
+          "proxy.ts only does optimistic cookie checks; real authorisation lives in a data access layer beside the data.",
+      },
+      {
+        title: "Motion that can't hide content",
+        description:
+          "Every entrance animation has a timer failsafe, and reduced motion — system or in-app — switches them off entirely.",
+      },
+      {
+        title: "Theme and text-size preferences",
+        description:
+          "Light, dark or system, plus 90–130% text scaling, resolved before first paint so nothing flashes on navigation.",
+      },
+      {
+        title: "Ported to React + Express",
+        description:
+          "The same app rebuilt as a Vite SPA on an Express 5 API, sharing the same database and models.",
+      },
+    ],
+
+    outcome:
+      "It pulls a lot into one place: a security model I can explain line by line, a design system with real personality, and motion that never gets in the way of reading. Porting it to a second architecture afterwards showed me exactly where the framework ends and my own code begins.",
+
+    toolsUsed: ["Next.js 16", "React 19", "TypeScript", "MongoDB", "Mongoose", "Cloudinary", "GSAP", "Tailwind CSS"],
+
+    screenshots: ["/images/FanHub1.png", "/images/FanHub2.png", "/images/FanHub3.png"],
+  },
+
+  {
+    slug: "yg-cornhole",
+    name: "YG Cornhole",
+    title: "YG Cornhole — Competition Gear Storefront",
+    kind: "E-commerce",
+    summary: "Competition bags, custom boards and team gear, with PayPal checkout.",
+    description:
+      "A storefront for a competition cornhole brand — ACL-approved bags, custom boards and apparel — with product pages, a cart, and PayPal checkout handled entirely on the server.",
+    year: "2026",
+    featured: true,
+    panel: "stone",
+    imageSrc: "/images/Cornhole1.png",
+    liveUrl: "https://yg-cornhole.vercel.app",
+    repoUrl: "https://github.com/Laiqa-Islam/yg-cornhole",
+    tech: ["Next.js", "TypeScript", "PayPal Orders v2", "GSAP", "Lenis"],
+
+    overview:
+      "A store for players who obsess over their gear: bags rated by their fast and control sides, custom boards, shirts and full-print team kits. The interesting part is the money path. The cart offers PayPal and PayPal-hosted card fields, and orders are created and captured through server-only route handlers using PayPal Orders v2. Prices are recalculated from the product catalogue on the server, so whatever total the browser sends is never trusted.",
+
+    pipeline: [
+      { label: "Cart", text: "The browser sends product IDs and quantities" },
+      { label: "Price", text: "A route handler recalculates every total from the catalogue" },
+      { label: "Order", text: "PayPal Orders v2 creates the order server-side" },
+      { label: "Capture", text: "Payment is captured — the client secret never leaves the server" },
+    ],
+
+    keyFeatures: [
+      {
+        title: "Server-trusted totals",
+        description:
+          "Every price is recalculated on the server from the catalogue; the total the browser sends is ignored.",
+      },
+      {
+        title: "PayPal and card fields",
+        description:
+          "PayPal buttons plus PayPal-hosted debit and credit card fields, so card data never touches the site.",
+      },
+      {
+        title: "Sandbox to live with one switch",
+        description:
+          "An environment flag moves between sandbox and live credentials, and the client secret is never exposed.",
+      },
+      {
+        title: "Specs at a glance",
+        description:
+          "Bags show fast-side and control-side ratings so players can compare them in a second.",
+      },
+      {
+        title: "Motion with weight",
+        description:
+          "GSAP and Lenis give the catalogue a heavy, sporty feel without slowing browsing down.",
+      },
+    ],
+
+    toolsUsed: ["Next.js", "TypeScript", "PayPal Orders v2", "GSAP", "Lenis"],
+
+    screenshots: [
+      "/images/Cornhole1.png",
+      "/images/Cornhole2.png",
+      "/images/Cornhole3.png",
+      "/images/Cornhole4.png",
+    ],
+  },
+
+  {
+    slug: "eventsphere",
+    name: "EventSphere",
+    title: "EventSphere — College Event Platform",
+    kind: "Full-stack platform",
+    summary: "Campus events end to end: registration, QR check-in, reviews, certificates.",
+    description:
+      "A college event information system built as a full MERN application. Students browse and register for events, organizers run them with QR check-in, and admins approve and oversee the whole platform.",
+    year: "2026",
+    featured: true,
+    panel: "paper",
+    sketch: "events",
+    repoUrl: "https://github.com/Laiqa-Islam/EventSphere-Techwiz",
+    tech: ["React 19", "Express 5", "MongoDB", "TypeScript", "Cloudinary"],
+
+    overview:
+      "EventSphere is a monorepo with three parts: a React 19 + Vite client, an Express 5 API, and a shared package of enums, DTOs and the API envelope that both sides import, so the contract can't drift. Students register and get a QR pass; organizers run check-in, which only opens around the event itself; attendance unlocks reviews and certificates, generated as PDFs on demand behind an ownership and fee check. It deploys to Vercel as a serverless function that re-exports the same Express app.",
+
+    pipeline: [
+      { label: "Client", text: "React 19 + Vite SPA with typed hooks" },
+      { label: "API", text: "Express 5 — auth, roles, validation, rate limiting" },
+      { label: "Serialize", text: "Every document becomes a DTO before it leaves" },
+      { label: "Store", text: "MongoDB Atlas, with banners and galleries on Cloudinary" },
+    ],
+
+    keyFeatures: [
+      {
+        title: "Three roles, one app",
+        description:
+          "Participants, organizers and admins each get their own flows, enforced by role-based middleware on the API.",
+      },
+      {
+        title: "QR check-in that opens on time",
+        description:
+          "Organizers can only run check-in around the event itself; participants carry their pass as a QR code.",
+      },
+      {
+        title: "Certificates on demand",
+        description:
+          "Attendance unlocks certificates, rendered as PDFs on request after ownership and fee checks.",
+      },
+      {
+        title: "A shared contract",
+        description:
+          "One package of enums, DTOs and the API envelope is imported by both client and server.",
+      },
+      {
+        title: "Nothing leaks",
+        description:
+          "Serializers turn every database document into a DTO before it leaves the API.",
+      },
+      {
+        title: "Runs without a database",
+        description:
+          "A dev mode boots against an in-memory MongoDB, seeded automatically, so anyone can try the whole app.",
+      },
+    ],
+
+    toolsUsed: ["React 19", "Vite", "TypeScript", "Express 5", "Mongoose", "MongoDB Atlas", "Cloudinary", "shadcn/ui"],
+  },
+
+  {
     slug: "mood-based-music-generator",
+    name: "MoodBeat",
+    kind: "Music tool",
+    summary: "A browser studio: play, pick a mood, mix it, add vocals, export a song.",
+    year: "2025",
+    featured: true,
+    panel: "graphite",
+    repoUrl: "https://github.com/Laiqa-Islam/MoodBeat",
     title: "Mood-Based Music Generator",
     description:
       "A browser-based music tool for people who love music but would never open something like Ableton. You play instruments with your keyboard, pick a mood, mix it, add vocals, and walk away with an actual song — no studio, no manual, no music degree required.",
 
     imageSrc: "/images/Moodbeat1.png",
-    hoverTint: "from-purple-900/50 via-transparent to-transparent",
-    Tint: "from-purple-900/50 via-transparent to-transparent",
 
     tech: [
       "Laravel",
@@ -372,25 +638,83 @@ export const projects: Project[] = [
     ],
 
     screenshots: [
-      "/images/Moodbeat2.png",
-      "/images/Moodbeat3.png",
-      "/images/Moodbeat4.png",
-      "/images/Moodbeat5.png",
-      "/images/Moodbeat6.png",
-      "/images/Moodbeat7.png",
+      "/images/MoodBeat2.png",
+      "/images/MoodBeat3.png",
+      "/images/MoodBeat4.png",
+      "/images/MoodBeat5.png",
+      "/images/MoodBeat6.png",
+      "/images/MoodBeat7.png",
       "/images/Moodbeat8.png",
       "/images/Moodbeat9.png",
     ],
   },
 
   {
+    slug: "furshield",
+    name: "FurShield",
+    title: "FurShield — Pet Care Platform",
+    kind: "Full-stack platform",
+    summary: "Owners, vets and shelters in one place — records, appointments, adoption.",
+    description:
+      "A full-stack pet care platform for pet owners, veterinarians and animal shelters: pet profiles, medical timelines, document uploads, appointments, adoption listings, daily shelter care and a product catalogue.",
+    year: "2026",
+    panel: "accent",
+    imageSrc: "/images/FurShield1.png",
+    liveUrl: "https://fur-shield-chi.vercel.app",
+    repoUrl: "https://github.com/Laiqa-Islam/PetCare",
+    tech: ["Next.js 16", "TypeScript", "MongoDB", "Cloudinary", "Tailwind CSS"],
+
+    overview:
+      "FurShield centralises a pet's whole life in one app with three very different users. Owners keep profiles, medical timelines and documents like X-rays, lab reports and insurance papers; vets see appointments and write treatment notes; shelters list animals for adoption, handle interest forms and track daily care. Uploads go through Cloudinary with signed requests, sessions are signed HTTP-only JWTs, and an OpenStreetMap view handles location.",
+
+    keyFeatures: [
+      {
+        title: "Three roles",
+        description:
+          "Owners, veterinarians and shelters each get dashboards shaped around the work they actually do.",
+      },
+      {
+        title: "Medical timelines",
+        description:
+          "Visits, treatment notes and documents land on each pet's timeline in order.",
+      },
+      {
+        title: "Signed uploads",
+        description:
+          "Galleries, certificates, X-rays and lab reports go to Cloudinary through signed uploads.",
+      },
+      {
+        title: "Adoption flow",
+        description:
+          "Shelters publish listings and receive structured interest forms from would-be owners.",
+      },
+      {
+        title: "Repeatable test data",
+        description:
+          "A seed script creates owners, specialist vets, shelters and an admin so every flow can be tried.",
+      },
+    ],
+
+    toolsUsed: ["Next.js 16", "React 19", "TypeScript", "MongoDB", "Mongoose", "Cloudinary", "jose", "Zod"],
+
+    screenshots: [
+      "/images/FurShield1.png",
+      "/images/FurShield2.png",
+      "/images/FurShield3.png",
+      "/images/FurShield4.png",
+    ],
+  },
+
+  {
     slug: "york-publishers-dashboard",
+    name: "York",
+    kind: "Internal dashboard",
+    summary: "Admin-run team messaging with inline media and timed deletion.",
+    panel: "stone",
     title: "York Publishers Dashboard",
     description:
       "An internal chat and dashboard for a publishing company. Full messaging — send, edit, delete on a timer — plus media sharing, but locked down so only admins run conversations. No random DMs flying around between staff, and that was the point.",
     imageSrc: "/images/YorkPublishers5.png",
-    hoverTint: "from-amber-900/50 via-transparent to-transparent",
-    Tint: "from-amber-900/50 via-transparent to-transparent",
     tech: ["Laravel", "JavaScript", "SQL"],
 
     overview:
@@ -413,16 +737,25 @@ export const projects: Project[] = [
       },
     ],
     toolsUsed: ["Laravel", "Alpine.js", "MySQL"],
+    screenshots: [
+      "/images/YorkPublishers1.png",
+      "/images/YorkPublishers2.png",
+      "/images/YorkPublishers3.png",
+      "/images/YorkPublishers4.png",
+    ],
   },
 
 
   {
     slug: "business-websites",
+    name: "Business sites",
+    kind: "Marketing sites",
+    summary: "Three business sites hand-coded from an empty file — no templates.",
+    panel: "paper",
     title: "Business Websites",
     description:
       "Three business sites — InkCraft Marketing Solutions, Amazon Publishing Experts, and AlphaVerse Digitals — hand-coded from an empty file. No templates, no page builder, fully responsive on everything.",
     imageSrc: "/images/AlphaverseDigitals.png",
-    hoverTint: "from-rose-900/30 via-transparent to-transparent",
     tech: ["HTML", "CSS", "JavaScript"],
     screenshots: [
       "/images/InkCraftMarketingSolutions.png",
@@ -431,12 +764,14 @@ export const projects: Project[] = [
   },
   {
     slug: "wordpress-projects",
+    name: "WordPress",
+    kind: "CMS builds",
+    summary: "Business and blog sites — custom themes, Elementor where it helped.",
+    panel: "stone",
     title: "WordPress Projects",
     description:
       "A run of WordPress builds — business sites and blog-style informational ones. Custom themes where it made sense, Elementor where it made the client's life easier.",
     imageSrc: "/images/Wordpress4.png",
-    hoverTint: "from-cyan-900/50 via-transparent to-transparent",
-    Tint: "from-cyan-900/50 via-transparent to-transparent",
     tech: ["WordPress", "Elementor", "Custom Themes"],
     screenshots: [
       "/images/Wordpress2.png",

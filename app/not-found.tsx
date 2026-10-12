@@ -1,30 +1,27 @@
-import Link from "next/link";
-import Nav from "@/components/Nav";
-import Scramble from "@/components/Scramble";
+import { TLink } from "@/components/motion/PageTransition";
+import { MaskLetters } from "@/components/ui/Mask";
+import { dl } from "@/lib/motion";
 
 export default function NotFound() {
   return (
-    <>
-      <Nav />
-      <main className="grid-bg flex min-h-screen flex-col items-center justify-center px-5 text-center">
-        <p className="mb-4 font-mono text-xs tracking-[0.3em] text-gold">
-          <Scramble text="ERR // ROUTE NOT RESOLVED" speed={30} />
+    <main className="flex min-h-[calc(100svh-62px)] flex-col px-5 pt-7 pb-16 md:px-8">
+      <div className="label flex gap-6">
+        <span className="text-accent-text">(404)</span>
+        <span>Route not found</span>
+      </div>
+      <h1 className="mt-auto text-[clamp(120px,32vw,520px)] leading-[0.8] tracking-[-0.07em] text-accent">
+        <MaskLetters text="404" step={90} />
+      </h1>
+      <div className="mt-8 flex flex-col gap-6 border-t-2 border-line pt-6 md:flex-row md:items-end md:justify-between">
+        <p data-reveal="up" style={dl(300)} className="max-w-[36ch] text-[clamp(19px,1.6vw,24px)] leading-[1.35]">
+          This page isn&apos;t part of the build. It may have moved, or it never existed.
         </p>
-        <h1 className="font-display text-[clamp(5rem,20vw,16rem)] font-light leading-none tracking-tight text-outline-gold">
-          404
-        </h1>
-        <p className="mt-6 max-w-sm text-sm leading-relaxed text-bone-dim">
-          This path doesn&apos;t exist in the build. It may have been moved,
-          renamed, or never committed at all.
-        </p>
-        <Link
-          href="/"
-          data-cursor="hover"
-          className="mt-10 inline-flex items-center gap-3 border border-gold px-6 py-3 font-mono text-xs font-bold tracking-widest text-gold transition-colors duration-300 hover:bg-gold hover:text-ink"
-        >
-          ← RETURN TO INDEX
-        </Link>
-      </main>
-    </>
+        <span data-reveal="up" style={dl(420)} data-magnetic="">
+          <TLink href="/" className="btn btn-primary min-w-[240px]">
+            Back to the index <span className="arrow">→</span>
+          </TLink>
+        </span>
+      </div>
+    </main>
   );
 }

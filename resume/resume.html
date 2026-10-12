@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Laiqa Islam — Résumé</title>
+<!--
+  Source for the résumé PDFs. Print with headless Chrome:
+    resume.html          → full version (includes phone)
+    resume.html?public   → public version for the website (phone hidden)
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Lexend+Zetta:wght@300;400&family=Montserrat:wght@500;600&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap"
+  rel="stylesheet"
+/>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --paper: #fcfaf6;
+    --ink: #3a3836;
+    --soft: #5c5955;
+    --rule: #6b6865;
+  }
+  html, body { background: #e9e6e0; }
+  body {
+    font-family: "Open Sans", sans-serif;
+    color: var(--ink);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  body.public .private { display: none; }
+
+  .page {
+    width: 210mm;
+    height: 297mm;
+    margin: 0 auto;
+    padding: 17mm 18mm 14mm;
+    background: var(--paper);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    page-break-after: always;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  header { text-align: center; margin-bottom: 11mm; }
+  .name {
+    font-family: "Lexend Zetta", sans-serif;
+    font-weight: 300;
+    font-size: 30pt;
+    letter-spacing: 0.06em;
+    line-height: 1.1;
+  }
+  .role {
+    margin-top: 5mm;
+    font-family: "Lexend Zetta", sans-serif;
+    font-size: 9.5pt;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  /* Label column, continuous vertical rule, content column. */
+  .cols {
+    position: relative;
+    flex: 1;
+    display: grid;
+    grid-template-columns: 49mm 1fr;
+    align-content: start;
+    row-gap: 7mm;
+  }
+  .cols::before {
+    content: "";
+    position: absolute;
+    left: 49mm;
+    top: 0;
+    bottom: 0;
+    border-left: 0.8pt solid var(--rule);
+  }
+  .label {
+    display: flex;
+    align-items: flex-start;
+    gap: 3.2mm;
+    padding-top: 1.2mm;
+    font-family: "Lexend Zetta", sans-serif;
+    font-size: 7.6pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .label::before {
+    content: "";
+    flex: none;
+    width: 2.6mm;
+    height: 2.6mm;
+    margin-top: 0.3mm;
+    background: var(--ink);
+  }
+  .content { padding-left: 7mm; }
+
+  p { font-size: 10pt; line-height: 1.55; }
+  h3 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: 10pt;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 4mm;
+  }
+  .when {
+    flex: none;
+    font-style: italic;
+    font-size: 8.8pt;
+    color: var(--soft);
+  }
+  .sub {
+    margin-top: 0.8mm;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 9pt;
+    color: var(--soft);
+  }
+  .item + .item { margin-top: 4.2mm; }
+
+  ul { list-style: none; margin-top: 1.6mm; }
+  li {
+    position: relative;
+    padding-left: 3.6mm;
+    font-size: 9.2pt;
+    line-height: 1.5;
+  }
+  li + li { margin-top: 0.9mm; }
+  li::before {
+    content: "";
+    position: absolute;
+    left: 0.4mm;
+    top: 2.3mm;
+    width: 1.3mm;
+    height: 1.3mm;
+    border-radius: 50%;
+    background: var(--ink);
+  }
+  strong { font-weight: 600; }
+  a { color: inherit; text-decoration: none; }
+
+  .skills { display: grid; grid-template-columns: 24mm 1fr; row-gap: 1.6mm; column-gap: 3mm; }
+  .skills dt { font-weight: 600; font-size: 9.2pt; }
+  .skills dd { font-size: 9.2pt; line-height: 1.45; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; column-gap: 6mm; }
+  .two-col ul { margin-top: 0; }
+  .contact { font-family: "Montserrat", sans-serif; font-weight: 600; font-size: 9.6pt; line-height: 1.75; }
+</style>
+</head>
+<body>
+<script>
+  if (location.search.includes("public")) document.body.classList.add("public");
+</script>
+
+<!-- ─────────────────────────────── Page 1 ─────────────────────────────── -->
+<section class="page">
+  <header>
+    <h1 class="name">LAIQA ISLAM</h1>
+    <p class="role">Full-Stack Developer</p>
+  </header>
+
+  <div class="cols">
+    <div class="label">About me</div>
+    <div class="content">
+      <p>
+        Full-stack developer working across Laravel, the MERN stack and Next.js. At Souloftware I
+        ship features on live client platforms — clinical workflows, payments, shipping
+        integrations and security for sensitive data. I treat the interface, the API and the
+        database as one problem, and I care as much about why a feature exists as how it is built.
+      </p>
+    </div>
+
+    <div class="label">Experience</div>
+    <div class="content">
+      <div class="item">
+        <div class="meta">
+          <h3>Full-Stack Developer</h3>
+          <span class="when">Sept 2025 – Present</span>
+        </div>
+        <p class="sub">Souloftware</p>
+        <ul>
+          <li>
+            <strong>iFeelShy — UK online pharmacy (Laravel).</strong> One of five developers, with
+            80+ commits. Built the prescription, dispensing and ready-to-dispatch workflow, Royal
+            Mail shipping with label generation, and LiveKit video consultations.
+          </li>
+          <li>
+            Hardened the same platform for health data: multi-factor authentication, encryption at
+            rest and a full audit trail; added subscriptions and inventory management.
+          </li>
+          <li>
+            <strong>ePharmacyFirst</strong> — integrated the SCR API (sandbox) and video-call
+            consultations.
+          </li>
+          <li>
+            <strong>YG Cornhole</strong> — Next.js storefront with PayPal Orders v2 checkout and
+            server-side pricing, a CMS, branded customer and admin receipts, and catalog
+            subcategories.
+          </li>
+          <li>
+            <strong>York Publishers</strong> — group chat system, profiles with image uploads, and
+            admin and user forms.
+          </li>
+          <li>
+            Built an embeddable calculator suite (financial, health, math, unit and date) in
+            Next.js, and marketing-site layouts for agency clients.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="label">Education</div>
+    <div class="content">
+      <div class="item">
+        <div class="meta">
+          <h3>Bachelor of Business Administration</h3>
+          <span class="when">2023 – Present</span>
+        </div>
+        <p class="sub">Iqra University · 3.91 GPA</p>
+      </div>
+      <div class="item">
+        <div class="meta">
+          <h3>ACCP — Diploma in Software Engineering</h3>
+          <span class="when">2023 – Present</span>
+        </div>
+        <p class="sub">Aptech</p>
+      </div>
+      <div class="item">
+        <div class="meta">
+          <h3>Intermediate (Pre-Medical)</h3>
+          <span class="when">2020 – 2022</span>
+        </div>
+        <p class="sub">Faisalabad Board · 82.6%</p>
+      </div>
+      <div class="item">
+        <div class="meta">
+          <h3>Matric (Biology)</h3>
+          <span class="when">2018 – 2020</span>
+        </div>
+        <p class="sub">Faisalabad Board · 86.1%</p>
+      </div>
+    </div>
+
+    <div class="label">Soft skills</div>
+    <div class="content two-col">
+      <ul>
+        <li>Leadership</li>
+        <li>Problem solving</li>
+        <li>Teamwork</li>
+        <li>Adaptability</li>
+      </ul>
+      <ul>
+        <li>Critical thinking</li>
+        <li>Work ethic</li>
+        <li>Emotional intelligence</li>
+        <li>Resilience</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────── Page 2 ─────────────────────────────── -->
+<section class="page">
+  <header>
+    <h1 class="name">LAIQA ISLAM</h1>
+    <p class="role">Full-Stack Developer</p>
+  </header>
+
+  <div class="cols">
+    <div class="label">Technical<br />skills</div>
+    <div class="content">
+      <dl class="skills">
+        <dt>Frontend</dt>
+        <dd>HTML, CSS, JavaScript, TypeScript, React, Next.js, Tailwind CSS, GSAP</dd>
+        <dt>Backend</dt>
+        <dd>Node.js, Express, Laravel, PHP, REST APIs, .NET, NestJS</dd>
+        <dt>Database</dt>
+        <dd>MongoDB (Mongoose), MySQL, PostgreSQL, SQL Server, SQLite</dd>
+        <dt>Integrations</dt>
+        <dd>Stripe, PayPal, LiveKit, Royal Mail API, Cloudinary, MapLibre GL, Web Audio</dd>
+        <dt>Practices</dt>
+        <dd>Role-based access, JWT sessions, 2FA, Zod validation, Git, Vercel, WordPress</dd>
+      </dl>
+    </div>
+
+    <div class="label">Projects</div>
+    <div class="content">
+      <div class="item">
+        <div class="meta">
+          <h3>FanHub+</h3>
+          <span class="when">Next.js 16 · MongoDB</span>
+        </div>
+        <ul>
+          <li>Fandom portal with eight channels, a multi-filter content explorer and a merch store with checkout.</li>
+          <li>Signed JWT sessions, bcrypt, hashed one-time tokens and no account enumeration; later ported to React + Express 5.</li>
+        </ul>
+      </div>
+      <div class="item">
+        <div class="meta">
+          <h3>EventSphere</h3>
+          <span class="when">React 19 · Express 5 · MongoDB</span>
+        </div>
+        <ul>
+          <li>College event platform with three roles, QR check-in and on-demand PDF certificates.</li>
+          <li>Monorepo with a shared, typed contract between client and API; serialized DTOs so nothing leaks.</li>
+        </ul>
+      </div>
+      <div class="item">
+        <div class="meta">
+          <h3>FurShield</h3>
+          <span class="when">Next.js 16 · MongoDB</span>
+        </div>
+        <ul>
+          <li>Pet care platform for owners, vets and shelters: medical timelines, appointments and adoption.</li>
+          <li>Signed Cloudinary uploads for medical documents; HTTP-only JWT sessions.</li>
+        </ul>
+      </div>
+      <div class="item">
+        <div class="meta">
+          <h3>Imperium Romanum</h3>
+          <span class="when">Next.js · MapLibre GL</span>
+        </div>
+        <ul>
+          <li>Interactive map of 2,000 years of Roman borders on a scrubbable, continuously crossfading timeline.</li>
+          <li>Data pipeline that clips historical borders to real coastlines — fully static, no tiles or API keys.</li>
+        </ul>
+      </div>
+      <div class="item">
+        <div class="meta">
+          <h3>MoodBeat</h3>
+          <span class="when">Laravel · Tone.js</span>
+        </div>
+        <ul>
+          <li>Browser music studio: keyboard instruments, mood-matched tracks, a mixer, vocals and song export.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="label">Contact</div>
+    <div class="content contact">
+      <a href="mailto:islamlaiqa@gmail.com">islamlaiqa@gmail.com</a><br />
+      <span class="private">+92 306 720 3657<br /></span>
+      <a href="https://laiqaislam.vercel.app">laiqaislam.vercel.app</a><br />
+      <a href="https://github.com/Laiqa-Islam">github.com/Laiqa-Islam</a><br />
+      <a href="https://www.linkedin.com/in/laiqa-islam">linkedin.com/in/laiqa-islam</a>
+    </div>
+  </div>
+</section>
+</body>
+</html>
