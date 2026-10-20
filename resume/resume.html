@@ -68,7 +68,7 @@
     display: grid;
     grid-template-columns: 49mm 1fr;
     align-content: start;
-    row-gap: 7mm;
+    row-gap: 6mm;
   }
   .cols::before {
     content: "";
@@ -175,8 +175,9 @@
       <p>
         Full-stack developer working across Laravel, the MERN stack and Next.js. At Souloftware I
         ship features on live client platforms — clinical workflows, payments, shipping
-        integrations and security for sensitive data. I treat the interface, the API and the
-        database as one problem, and I care as much about why a feature exists as how it is built.
+        integrations and security for sensitive data. I'm deepening my system design skills —
+        building reliable delivery pipelines with retries, idempotency and circuit breakers — and I
+        care as much about why a feature exists as how it is built.
       </p>
     </div>
 
@@ -287,9 +288,12 @@
         <dt>Database</dt>
         <dd>MongoDB (Mongoose), MySQL, PostgreSQL, SQL Server, SQLite</dd>
         <dt>Integrations</dt>
-        <dd>Stripe, PayPal, LiveKit, Royal Mail API, Cloudinary, MapLibre GL, Web Audio</dd>
+        <dd>Stripe, PayPal, LiveKit, Royal Mail, Cloudinary, MapLibre&nbsp;GL</dd>
+        <dt>System design</dt>
+        <dd>Retries &amp; exponential backoff, idempotency, circuit breakers, rate limiting, background
+          workers, pub/sub &amp; SSE, HMAC signing, SSRF protection</dd>
         <dt>Practices</dt>
-        <dd>Role-based access, JWT sessions, 2FA, Zod validation, Git, Vercel, WordPress</dd>
+        <dd>Role-based access, JWT sessions, 2FA, Zod validation, unit testing, Git, Vercel, WordPress</dd>
       </dl>
     </div>
 
@@ -297,51 +301,58 @@
     <div class="content">
       <div class="item">
         <div class="meta">
-          <h3>FanHub+</h3>
+          <h3><a href="https://github.com/Laiqa-Islam/Webhook-Service">Relay — Webhook Service</a></h3>
+          <span class="when">Next.js 16 · TypeScript · SQLite</span>
+        </div>
+        <ul>
+          <li>Delivers HMAC-signed webhooks through a background dispatcher with exponential backoff and jitter, idempotency keys, a per-endpoint circuit breaker, FIFO ordering and replay.</li>
+          <li>Token-bucket rate limiting, an SSRF guard and zero-downtime secret rotation; 25 unit tests on Node's built-in test runner.</li>
+        </ul>
+      </div>
+      <div class="item">
+        <div class="meta">
+          <h3><a href="https://github.com/Laiqa-Islam/Webhook-Inspector">hookscope — Webhook Inspector</a></h3>
+          <span class="when">Next.js · Server-Sent Events</span>
+        </div>
+        <ul>
+          <li>Request bin that captures any HTTP request and streams it to the browser live over SSE (pub/sub), with one-click server-side replay.</li>
+        </ul>
+      </div>
+      <div class="item">
+        <div class="meta">
+          <h3><a href="https://fanhub-plus.vercel.app">FanHub+</a></h3>
           <span class="when">Next.js 16 · MongoDB</span>
         </div>
         <ul>
-          <li>Fandom portal with eight channels, a multi-filter content explorer and a merch store with checkout.</li>
+          <li>Fandom portal with eight channels, a content explorer and a merch store.</li>
           <li>Signed JWT sessions, bcrypt, hashed one-time tokens and no account enumeration; later ported to React + Express 5.</li>
         </ul>
       </div>
       <div class="item">
         <div class="meta">
-          <h3>EventSphere</h3>
+          <h3><a href="https://github.com/Laiqa-Islam/EventSphere-Techwiz">EventSphere</a></h3>
           <span class="when">React 19 · Express 5 · MongoDB</span>
         </div>
         <ul>
-          <li>College event platform with three roles, QR check-in and on-demand PDF certificates.</li>
-          <li>Monorepo with a shared, typed contract between client and API; serialized DTOs so nothing leaks.</li>
+          <li>College event platform with three roles, QR check-in and PDF certificates, built as a monorepo with a typed client–API contract.</li>
         </ul>
       </div>
       <div class="item">
         <div class="meta">
-          <h3>FurShield</h3>
+          <h3><a href="https://fur-shield-chi.vercel.app">FurShield</a></h3>
           <span class="when">Next.js 16 · MongoDB</span>
         </div>
         <ul>
-          <li>Pet care platform for owners, vets and shelters: medical timelines, appointments and adoption.</li>
-          <li>Signed Cloudinary uploads for medical documents; HTTP-only JWT sessions.</li>
+          <li>Pet care platform for owners, vets and shelters — medical timelines, appointments, adoption and signed Cloudinary uploads.</li>
         </ul>
       </div>
       <div class="item">
         <div class="meta">
-          <h3>Imperium Romanum</h3>
+          <h3><a href="https://github.com/Laiqa-Islam/Roman-Empire">Imperium Romanum</a></h3>
           <span class="when">Next.js · MapLibre GL</span>
         </div>
         <ul>
-          <li>Interactive map of 2,000 years of Roman borders on a scrubbable, continuously crossfading timeline.</li>
-          <li>Data pipeline that clips historical borders to real coastlines — fully static, no tiles or API keys.</li>
-        </ul>
-      </div>
-      <div class="item">
-        <div class="meta">
-          <h3>MoodBeat</h3>
-          <span class="when">Laravel · Tone.js</span>
-        </div>
-        <ul>
-          <li>Browser music studio: keyboard instruments, mood-matched tracks, a mixer, vocals and song export.</li>
+          <li>Interactive map of 2,000 years of Roman borders, fed by a data pipeline that clips historical borders to real coastlines.</li>
         </ul>
       </div>
     </div>

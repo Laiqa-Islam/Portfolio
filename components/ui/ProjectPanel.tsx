@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { Panel, Project } from "@/data/projects";
 import { pad2 } from "@/lib/motion";
+import HoverVideo from "./HoverVideo";
 import Sketch from "./Sketch";
 
 export const PANEL_CLASS: Record<Panel, string> = {
@@ -23,7 +24,7 @@ export default function ProjectPanel({
   eager = false,
   size = "card",
 }: {
-  project: Pick<Project, "name" | "year" | "panel" | "imageSrc" | "sketch">;
+  project: Pick<Project, "name" | "year" | "panel" | "imageSrc" | "sketch" | "video">;
   index: number;
   total: number;
   sizes?: string;
@@ -58,6 +59,7 @@ export default function ProjectPanel({
               loading={eager ? "eager" : "lazy"}
               className="object-cover object-top"
             />
+            {project.video && size === "card" && <HoverVideo src={project.video} />}
           </div>
         ) : project.sketch ? (
           <Sketch kind={project.sketch} large={size === "hero"} />

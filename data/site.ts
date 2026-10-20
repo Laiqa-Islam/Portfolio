@@ -54,13 +54,13 @@ export const capabilities = [
   },
   {
     title: "Backends & APIs",
-    text: "Express and Laravel APIs with roles, validation and a contract both sides trust.",
-    proof: ["eventsphere", "york-publishers-dashboard", "mood-based-music-generator"],
+    text: "Express and Laravel APIs, plus delivery pipelines with retries, idempotency and circuit breakers.",
+    proof: ["relay", "hookscope", "eventsphere"],
   },
   {
     title: "Interactive & data-driven UI",
-    text: "Maps, timelines and audio in the browser — complicated things made to feel easy.",
-    proof: ["imperium-romanum", "mood-based-music-generator"],
+    text: "Scroll-driven motion, maps and audio in the browser — complicated things made to feel easy.",
+    proof: ["forma-digital-agency", "oliva-restaurant", "imperium-romanum"],
   },
 ];
 

@@ -4,7 +4,7 @@
 export type Panel = "accent" | "ink" | "paper" | "stone" | "graphite";
 
 /** Drawn UI sketch used when a project has no screenshots. */
-export type Sketch = "events" | "pets";
+export type Sketch = "events" | "pets" | "relay" | "inspector";
 
 export type Project = {
   slug: string;
@@ -25,6 +25,10 @@ export type Project = {
   featured?: boolean;
   panel?: Panel;
   sketch?: Sketch;
+  /** Muted walkthrough: plays on hover in cards and as the case-study cover. */
+  video?: string;
+  /** A sibling project built to work with this one, shown as a linked pair. */
+  companion?: { slug: string; text: string; flow: { label: string; text: string }[] };
   liveUrl?: string;
   repoUrl?: string;
 
@@ -238,13 +242,292 @@ export const projects: Project[] = [
   // },
 
   {
+    slug: "forma-digital-agency",
+    name: "Forma",
+    title: "Forma — Digital Agency Website",
+    kind: "Concept website",
+    summary: "A studio site with a video hero, a scroll-expanding intro and eight case studies.",
+    description:
+      "A website for FORMA, a fictional independent creative studio: big serif type, a forest-green palette, a full-screen video hero and scroll-driven motion across a work index, eight case studies, a locations directory and a careers page.",
+    year: "2026",
+    featured: true,
+    panel: "ink",
+    imageSrc: "/images/Forma1.jpg",
+    video: "/videos/forma-showcase.mp4",
+    liveUrl: "https://forma-digital-agency.vercel.app",
+    repoUrl: "https://github.com/Laiqa-Islam/Forma-Digital-Agency",
+    tech: ["Next.js 16", "React 19", "TypeScript", "GSAP", "Swiper"],
+
+    overview:
+      "FORMA is a portfolio piece modelled on the scale and pacing of a big agency site, with its own identity, copy and case studies. The homepage opens on a full-screen video with the wordmark, then an intro panel widens as you scroll, a showreel plays in a native dialog, and a Swiper carousel walks through featured work. All of the scroll animation lives in one GSAP ScrollTrigger component that reruns on every route change, and eight case studies are statically generated from a single content file.",
+
+    keyFeatures: [
+      {
+        title: "One motion layer",
+        description:
+          "Fade-ins, parallax, the fading wordmark and the widening intro panel all live in one GSAP ScrollTrigger component that reruns on route changes.",
+      },
+      {
+        title: "Reduced motion, properly",
+        description:
+          "Animations sit inside gsap.matchMedia, and background videos pause off-screen, honour reduced motion and carry a visible pause button.",
+      },
+      {
+        title: "Statically generated case studies",
+        description:
+          "Eight case studies, the work grid and the carousel all read from one projects file.",
+      },
+      {
+        title: "A live locations directory",
+        description:
+          "A searchable list of studio cities showing each one's local time, beside a zoomable map with pins.",
+      },
+      {
+        title: "Careers with filters",
+        description:
+          "Role cards filter by team and open native dialogs with the details.",
+      },
+      {
+        title: "No backend needed",
+        description:
+          "The enquiry form turns a message into a downloadable file, so nothing is sent or stored.",
+      },
+    ],
+
+    toolsUsed: ["Next.js 16", "React 19", "TypeScript", "GSAP ScrollTrigger", "Swiper", "Vercel"],
+
+    screenshots: [
+      "/images/Forma2.jpg",
+      "/images/Forma3.jpg",
+      "/images/Forma4.jpg",
+      "/images/Forma5.jpg",
+      "/images/Forma6.jpg",
+    ],
+  },
+
+  {
+    slug: "oliva-restaurant",
+    name: "Oliva",
+    title: "Oliva — Mediterranean Restaurant Website",
+    kind: "Concept website",
+    summary: "A scroll-driven restaurant site in plain HTML, CSS and JavaScript — no libraries.",
+    description:
+      "A website for OLIVA, a fictional Mediterranean restaurant, built around scroll-driven animation in plain HTML, CSS and JavaScript — no framework, no animation library, nothing to install.",
+    year: "2026",
+    featured: true,
+    panel: "stone",
+    imageSrc: "/images/Oliva1.jpg",
+    video: "/videos/oliva-walkthrough.mp4",
+    repoUrl: "https://github.com/Laiqa-Islam/Oliva-Restaurant-Website",
+    tech: ["HTML", "CSS", "JavaScript", "Node.js"],
+
+    overview:
+      "Every effect on OLIVA is hand-written. A small requestAnimationFrame loop maps scroll position through easing helpers, while pinned sections use CSS sticky so the page always scrolls natively. On the homepage a tilted cooking video grows to fill the screen between oversized letters; the menu page tracks categories and swaps kitchen photos as you move through the dishes. Pages are assembled at build time from one shared shell and a template per page, and every photo, video and font is self-hosted.",
+
+    pipeline: [
+      { label: "Shell", text: "One shared page holds the header, footer and booking form" },
+      { label: "Templates", text: "Each route has its own body template" },
+      { label: "Render", text: "A Node script stitches them into static pages" },
+      { label: "Check", text: "A QA script verifies headings, IDs, links and assets" },
+    ],
+
+    keyFeatures: [
+      {
+        title: "Animation from scratch",
+        description:
+          "Every scroll effect is a requestAnimationFrame loop with clamp, mix and ease helpers — no GSAP, no libraries.",
+      },
+      {
+        title: "A booking form that thinks",
+        description:
+          "Checks dates against opening hours, disables time slots that have passed and exports a calendar file, all in the browser.",
+      },
+      {
+        title: "Reduced motion respected",
+        description:
+          "With reduced motion the pages fall back to a static layout, and every background video has its own play/pause button.",
+      },
+      {
+        title: "Accessible by default",
+        description:
+          "Keyboard-friendly menu tabs, native dialogs for the booking form and full menu, and a print stylesheet for the menu.",
+      },
+      {
+        title: "One source for the menu",
+        description:
+          "Dishes and prices live in a single data file that the tabs, the full menu and the menu page all read.",
+      },
+      {
+        title: "Page-transition curtain",
+        description:
+          "A short curtain plays between pages without replacing normal browser navigation.",
+      },
+    ],
+
+    toolsUsed: ["HTML", "CSS", "JavaScript", "Node.js build script", "requestAnimationFrame"],
+
+    screenshots: [
+      "/images/Oliva2.jpg",
+      "/images/Oliva3.jpg",
+      "/images/Oliva4.jpg",
+      "/images/Oliva5.jpg",
+      "/images/Oliva6.jpg",
+    ],
+  },
+
+  {
+    slug: "relay",
+    name: "Relay",
+    title: "Relay — Webhook Delivery Service",
+    kind: "Backend system",
+    summary: "Signed webhooks delivered reliably: retries, idempotency, a circuit breaker and replay.",
+    description:
+      "A webhook delivery service: it signs each event with HMAC-SHA256, delivers it to subscribed endpoints, retries failures with exponential backoff, pauses endpoints that keep failing, and logs every attempt in a live console.",
+    year: "2026",
+    featured: true,
+    panel: "accent",
+    sketch: "relay",
+    repoUrl: "https://github.com/Laiqa-Islam/Webhook-Service",
+    companion: {
+      slug: "hookscope",
+      text: "hookscope is the receiving side. Open a bin, register its URL as a Relay endpoint, and watch each signed delivery and retry arrive with its signature headers intact — then replay any of them back.",
+      flow: [
+        { label: "Relay · Sign", text: "Each event is signed with HMAC-SHA256" },
+        { label: "Relay · Deliver", text: "Posted with retries, backoff and a circuit breaker" },
+        { label: "hookscope · Capture", text: "The bin catches every attempt, headers intact" },
+        { label: "hookscope · Inspect", text: "Streams in live — replay any delivery anywhere" },
+      ],
+    },
+    tech: ["Next.js 16", "TypeScript", "SQLite", "Node.js"],
+
+    overview:
+      "Sending a webhook is one fetch call; delivering it reliably is the hard part. Receivers go down, get slow or get flooded, and the same event must never arrive twice. Relay is a self-contained version of what companies like Svix build. An event is saved and acknowledged immediately, then a background dispatcher atomically claims each delivery, signs it the way Stripe does, and posts it. Failures retry with jittered exponential backoff, a circuit breaker pauses endpoints that keep failing, and anything that fails for good can be replayed from the console.",
+
+    pipeline: [
+      { label: "Ingest", text: "Rate-limited, checked for idempotency, saved and acknowledged" },
+      { label: "Claim", text: "The dispatcher atomically claims due deliveries — never sent twice" },
+      { label: "Sign & send", text: "HMAC-SHA256 signature over the raw body, 5-second timeout" },
+      { label: "Retry or settle", text: "Jittered backoff, circuit breaker, replay once failed" },
+    ],
+
+    keyFeatures: [
+      {
+        title: "Stripe-style signatures",
+        description:
+          "Signatures over the raw body; receivers compare in constant time and reject requests older than five minutes.",
+      },
+      {
+        title: "Exponential backoff",
+        description:
+          "Six attempts from 5s to 80s, each delay jittered by ±15% so a recovering endpoint isn't stampeded.",
+      },
+      {
+        title: "Idempotency",
+        description:
+          "An Idempotency-Key header stops duplicate events at ingestion, and payloads stay byte-identical across retries.",
+      },
+      {
+        title: "Circuit breaker",
+        description:
+          "Three straight failures pause an endpoint; after a cooldown one probe checks it's back before queued deliveries resume in order.",
+      },
+      {
+        title: "Rate limiting & SSRF guard",
+        description:
+          "A token bucket on ingestion, and endpoint URLs pointing at private networks or cloud metadata IPs are rejected.",
+      },
+      {
+        title: "Zero-downtime secret rotation",
+        description:
+          "During a 24-hour window every delivery carries two signatures, so consumers can switch secrets without missing one.",
+      },
+    ],
+
+    outcome:
+      "Relay is where I've been putting my system design learning into practice: each mechanism exists because of a specific way delivery fails, and the live console makes every one of them visible. It ships with 25 unit tests on Node's built-in test runner, covering signing, the SSRF guard, backoff bounds, subscription matching and the token bucket.",
+
+    toolsUsed: ["Next.js 16", "React 19", "TypeScript", "node:sqlite", "Tailwind CSS", "shadcn/ui", "Node test runner"],
+  },
+
+  {
+    slug: "hookscope",
+    name: "hookscope",
+    title: "hookscope — Webhook Inspector",
+    kind: "Developer tool",
+    summary: "Catch every webhook, inspect it live, replay it anywhere — Relay's other half.",
+    description:
+      "A self-hostable webhook inspector, like a mini RequestBin: open a bin, get a URL, and every request that hits it streams into the browser the moment it lands — with replay, copy-as-curl, and Redis pub/sub so it works on serverless.",
+    year: "2026",
+    featured: true,
+    panel: "graphite",
+    imageSrc: "/images/Hookscope1.png",
+    repoUrl: "https://github.com/Laiqa-Islam/Webhook-Inspector",
+    tech: ["Next.js 16", "TypeScript", "Redis", "Server-Sent Events"],
+    companion: {
+      slug: "relay",
+      text: "Relay is the sending side. Register a hookscope bin as one of Relay's endpoints and every signed delivery, retry and replay lands here live, signature headers and all.",
+      flow: [
+        { label: "Relay · Sign", text: "Each event is signed with HMAC-SHA256" },
+        { label: "Relay · Deliver", text: "Posted with retries, backoff and a circuit breaker" },
+        { label: "hookscope · Capture", text: "The bin catches every attempt, headers intact" },
+        { label: "hookscope · Inspect", text: "Streams in live — replay any delivery anywhere" },
+      ],
+    },
+
+    overview:
+      "hookscope catches webhooks and pushes them to the browser the instant they land. Version one kept bins in memory with an event emitter — perfect on one long-running server, broken on Vercel, where the instance that captures a webhook usually isn't the one holding your browser's stream. So the store became an interface with two implementations: in memory for local development, and Redis for serverless, where every capture is saved with LPUSH and broadcast with PUBLISH to whichever instance is streaming that bin. Without Redis on Vercel it fails loudly with a clear message rather than silently never updating.",
+
+    pipeline: [
+      { label: "Capture", text: "Any method, any path — rate-limited, bodies capped" },
+      { label: "Store", text: "LPUSH + PUBLISH in one Redis round trip, or in memory" },
+      { label: "Stream", text: "SSE subscribed to the bin; backlog refetched on reconnect" },
+      { label: "Replay", text: "Re-sent server-side through an SSRF-safe fetch" },
+    ],
+
+    keyFeatures: [
+      {
+        title: "Two stores, one interface",
+        description:
+          "In memory locally, Redis pub/sub on serverless. The routes only ever ask for a store, so none of them know which one is active.",
+      },
+      {
+        title: "Live, with nothing lost",
+        description:
+          "Captures stream over Server-Sent Events, and whenever a stream reconnects the browser refetches the backlog it missed.",
+      },
+      {
+        title: "Replay that can't reach inside",
+        description:
+          "Destinations are checked at connection time, so DNS-rebinding tricks are caught; loopback, private ranges and cloud metadata are blocked.",
+      },
+      {
+        title: "Safe to host publicly",
+        description:
+          "Rate limits on bins, captures and replays, capped bodies, bins that expire after a day idle, and platform headers stripped.",
+      },
+      {
+        title: "Accepts anything",
+        description:
+          "Every method, any sub-path, binary bodies shown as base64, and CORS-friendly so browser fetch calls work too.",
+      },
+      {
+        title: "Copy as curl",
+        description:
+          "Turns any capture into a runnable, safely quoted curl command.",
+      },
+    ],
+
+    toolsUsed: ["Next.js 16", "React 19", "TypeScript", "node-redis", "Upstash Redis", "undici", "Server-Sent Events"],
+  },
+
+  {
     slug: "imperium-romanum",
     name: "Imperium",
     kind: "Interactive map",
     summary: "Two thousand years of Roman borders you can scrub through on a timeline.",
     year: "2026",
     featured: true,
-    panel: "accent",
+    panel: "paper",
     repoUrl: "https://github.com/Laiqa-Islam/Roman-Empire",
     pipeline: [
       { label: "Source", text: "Century-by-century world borders from historical-basemaps" },
@@ -490,7 +773,6 @@ export const projects: Project[] = [
     description:
       "A college event information system built as a full MERN application. Students browse and register for events, organizers run them with QR check-in, and admins approve and oversee the whole platform.",
     year: "2026",
-    featured: true,
     panel: "paper",
     sketch: "events",
     repoUrl: "https://github.com/Laiqa-Islam/EventSphere-Techwiz",
@@ -548,7 +830,6 @@ export const projects: Project[] = [
     kind: "Music tool",
     summary: "A browser studio: play, pick a mood, mix it, add vocals, export a song.",
     year: "2025",
-    featured: true,
     panel: "graphite",
     repoUrl: "https://github.com/Laiqa-Islam/MoodBeat",
     title: "Mood-Based Music Generator",

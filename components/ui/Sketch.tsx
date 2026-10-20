@@ -73,6 +73,90 @@ function PetsSketch({ large }: { large: boolean }) {
   );
 }
 
+/** Relay's delivery log: a success, retries backing off, the breaker opening. */
+function RelaySketch({ large }: { large: boolean }) {
+  const rows: [string, string, string, number][] = [
+    ["12:04:11", "payment.succeeded", "200 · sig✓", 1],
+    ["12:04:09", "order.created", "retry · 20s", 0.85],
+    ["12:03:49", "order.created", "retry · 10s", 0.7],
+    ["12:03:39", "order.created", "503 · retry 5s", 0.55],
+    ["12:03:12", "invoice.paid", "200 · sig✓", 0.4],
+  ];
+  return (
+    <div className={`flex h-full flex-col font-mono ${large ? "gap-4 text-[15px]" : "gap-2 text-[11px]"}`}>
+      <div
+        className={`flex justify-between border-b pb-1.5 tracking-[0.06em] uppercase ${large ? "text-[13px]" : "text-[10px]"}`}
+        style={{ borderColor: soft(40) }}
+      >
+        <span className="flex items-center gap-2">
+          <span className="pulse" />
+          Dispatcher
+        </span>
+        <span>breaker: open</span>
+      </div>
+      <div className="flex min-h-0 flex-1 flex-col justify-around overflow-hidden">
+        {rows.map(([time, type, status, opacity]) => (
+          <span
+            key={time}
+            className="grid grid-cols-[auto_minmax(0,1fr)_auto] gap-3 border-b py-1"
+            style={{ opacity, borderColor: soft(25) }}
+          >
+            <span>{time}</span>
+            <span className="truncate">{type}</span>
+            <span className={status.startsWith("200") ? "" : "font-bold"}>{status}</span>
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/** hookscope's live feed of captured requests. */
+function InspectorSketch({ large }: { large: boolean }) {
+  const rows: [string, string, string, number][] = [
+    ["POST", "/github/push", "1.2 KB", 1],
+    ["POST", "/stripe/events", "860 B", 0.8],
+    ["GET", "/health?ping=1", "0 B", 0.62],
+    ["PUT", "/orders/42", "312 B", 0.45],
+  ];
+  return (
+    <div className={`flex h-full flex-col font-mono ${large ? "gap-4 text-[15px]" : "gap-2 text-[11px]"}`}>
+      <div
+        className={`flex justify-between border-b pb-1.5 tracking-[0.06em] uppercase ${large ? "text-[13px]" : "text-[10px]"}`}
+        style={{ borderColor: soft(40) }}
+      >
+        <span className="flex items-center gap-2">
+          <span className="pulse" />
+          Live · SSE
+        </span>
+        <span>bin a1b2c3</span>
+      </div>
+      <div className="flex min-h-0 flex-1 flex-col justify-around overflow-hidden">
+        {rows.map(([method, path, size, opacity]) => (
+          <span
+            key={path}
+            className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 border-l-[3px] py-1 pl-2"
+            style={{ opacity, background: soft(8), borderColor: opacity === 1 ? "var(--accent)" : soft(30) }}
+          >
+            <span className="font-bold">{method}</span>
+            <span className="truncate">{path}</span>
+            <span>{size}</span>
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function Sketch({ kind, large = false }: { kind: SketchKind; large?: boolean }) {
-  return kind === "events" ? <EventsSketch large={large} /> : <PetsSketch large={large} />;
+  switch (kind) {
+    case "events":
+      return <EventsSketch large={large} />;
+    case "relay":
+      return <RelaySketch large={large} />;
+    case "inspector":
+      return <InspectorSketch large={large} />;
+    default:
+      return <PetsSketch large={large} />;
+  }
 }

@@ -5,8 +5,10 @@ import type { ReactNode } from "react";
 import { TLink } from "@/components/motion/PageTransition";
 import { MaskLetters } from "@/components/ui/Mask";
 import ProjectPanel from "@/components/ui/ProjectPanel";
+import Companion from "@/components/work/Companion";
 import Gallery from "@/components/work/Gallery";
 import Pipeline from "@/components/work/Pipeline";
+import VideoHero from "@/components/work/VideoHero";
 import { projects } from "@/data/projects";
 import { dl, pad2 } from "@/lib/motion";
 
@@ -43,6 +45,7 @@ export default async function CaseStudy({ params }: Props) {
   const project = projects[index];
   const next = projects[(index + 1) % projects.length];
   const hero = project.heroImage ?? project.imageSrc;
+  const companion = project.companion ? projects.find((p) => p.slug === project.companion?.slug) : undefined;
 
   // Size the title by its longest word so single long names never overflow.
   const longest = Math.max(...project.name.split(" ").map((w) => w.length));
@@ -125,7 +128,9 @@ export default async function CaseStudy({ params }: Props) {
 
       <section className="px-5 pt-8 md:px-8">
         <div data-reveal="img" style={dl(300, 1400)} className="relative aspect-[4/3] overflow-hidden md:aspect-[16/8]">
-          {hero ? (
+          {project.video && hero ? (
+            <VideoHero src={project.video} poster={hero} label={`${project.name} walkthrough`} />
+          ) : hero ? (
             <div data-parallax="0.08" className="absolute inset-0">
               <Image src={hero} alt={`${project.name} — overview`} fill priority sizes="100vw" className="object-cover object-top" />
             </div>
@@ -162,6 +167,18 @@ export default async function CaseStudy({ params }: Props) {
       {project.pipeline && (
         <Chapter no={++n} label="How it works">
           <Pipeline steps={project.pipeline} />
+        </Chapter>
+      )}
+
+      {companion && project.companion && (
+        <Chapter no={++n} label={`Works with ${companion.name}`}>
+          <Companion
+            companion={companion}
+            index={projects.indexOf(companion)}
+            total={projects.length}
+            text={project.companion.text}
+            flow={project.companion.flow}
+          />
         </Chapter>
       )}
 
